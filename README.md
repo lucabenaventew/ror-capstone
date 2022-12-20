@@ -165,6 +165,13 @@ To run tests, run the following command:
 - Twitter: [@Diegoart80](https://twitter.com/Diegoart80)
 - LinkedIn:[ LinkedIn](https://www.linkedin.com/in/diegoarturoh/)
 
+👥 **Author2**
+
+👤 Luca Benavente
+- GitHub: [@lucabenaventew](https://github.com/lucabenaventew)
+- Twitter: [@BenaventeLuca](https://twitter.com/BenaventeLuca)
+- LinkedIn:[ LinkedIn](https://www.linkedin.com/in/lucabenaventew/)
+
 
 ## 🤝 Contributing <a name="contributing"></a>
 

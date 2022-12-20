@@ -137,7 +137,7 @@ Example command:
 
 To run the project, copay the following URL:
 
-https://github.com/robinbenitezmora/My-Blog-App
+https://github.com/lucabenaventew/ror-capstone.git
 
 <!--
 Example command:

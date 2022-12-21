@@ -7,9 +7,6 @@ AllCops:
     - "Guardfile"
     - "Rakefile"
     - "node_modules/**/*"
-    - "test/**/*"
-    - "app/helpers/*"
-    - "app/models/*"
 
   DisplayCopNames: true
 

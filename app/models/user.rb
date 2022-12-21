@@ -1,3 +1,6 @@
 class User < ApplicationRecord
-    validates :name, presence: true
+  has_many :recipes, inverse_of: 'user', foreign_key: 'user_id', dependent: :destroy
+  has_many :foods, inverse_of: 'user', foreign_key: 'user_id', dependent: :destroy
+
+  validates :name, presence: true, length: { maximum: 27 }
 end

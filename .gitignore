@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+node_module/
 
 # ignore hidden files
 .env

@@ -41,6 +41,8 @@ Style/DefWithParentheses:
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 
+Layout/EndOfLine:
+  Enabled: false
 Layout/HashAlignment:
   EnforcedColonStyle: key
 Layout/ExtraSpacing:
@@ -51,6 +53,8 @@ Layout/MultilineMethodCallIndentation:
 Lint/RaiseException:
   Enabled: false
 Lint/StructNewOverride:
+  Enabled: false
+Lint/AmbiguousBlockAssociation:
   Enabled: false
 Style/HashEachMethods:
   Enabled: false

@@ -1,18 +1,19 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Foods</h1>
-
-<%= @user.name %>
-
-
-<div id="foods">
-  <% @foods.each do |food| %>
-    <%= render food %>
-    <p>
-      <%= link_to "Show this food", user_food_path(@user, food) %>
-    </p>
-  <% end %>
+<div class="add_food_button_container" >
+  <%= link_to "Add Food", new_food_path, class: "add_food_btn" %>
 </div>
-
-<%= link_to "New Food", new_user_food_path %> <br>
-<%= link_to "Back to User", user_path(@user) %>
+<table class="food_table" >
+  <tr>
+    <th class="food_heading"><%= t('.food_name') %></th>
+    <th class="food_heading"><%= t('.measurement_unit') %></th>
+    <th class="food_heading"><%= t('.unit_price') %></th>
+    <th class="food_heading"><%= t('.food_action') %></th>
+  </tr>
+  <% @foods.each_with_index do |food, index| %>
+    <tr class="<%= index%2==0 ? 'food_even' : 'food_prime' %>" >
+      <td class="food_detail" ><%= food.name %></td>
+      <td class="food_detail" ><%= food.measurement_unit %></td>
+      <td class="food_detail" >$<%= food.price %></td>
+      <td class="food_detail" ><%= button_to "REMOVE", food_path(id: food.id), method: :delete %></td>
+    <tr>
+  <% end %>
+</table>

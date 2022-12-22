@@ -1,0 +1,7 @@
+<section class="public_recipe_container mt-5">
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <%= render partial: "recipe", locals: { recipe: } %>
+    <% end %>
+  </div>
+</section>

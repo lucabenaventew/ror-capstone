@@ -1,29 +1,13 @@
-<div id="<%= dom_id recipe %>">
-  <p>
-    <strong>Name:</strong>
-    <%= recipe.name %>
-    <strong>ID:</strong>
-    <%= recipe.id %>
-  </p>
-
-  <p>
-    <strong>Preparation time:</strong>
-    <%= recipe.preparation_time %>
-  </p>
-
-  <p>
-    <strong>Cooking time:</strong>
-    <%= recipe.cooking_time %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= recipe.description %>
-  </p>
-
-  <p>
-    <strong>Public:</strong>
-    <%= recipe.public %>
-  </p>
-
+<div class="recipe_form_container">
+  <%= form_for @recipe, url: recipes_path, method: :post, html: { class: 'recipe_form' } do |f| %>
+    <%= f.label :name, class: "form_field_label" %>
+    <%= f.text_field :name, class: 'form_field' %>
+    <%= f.label :preparation_time, class: "form_field_label" %>
+    <%= f.text_field :preparation_time, class: 'form_field' %>
+    <%= f.label :cooking_time, class: "form_field_label" %>
+    <%= f.text_field :cooking_time, class: 'form_field' %>
+    <%= f.label :description, class: "form_field_label" %>
+    <%= f.text_area :description, class: 'form_area_field' %>
+    <%= f.submit "Submit", class: "recipe_form_submit_btn" %>
+  <% end %>
 </div>

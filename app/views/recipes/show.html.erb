@@ -1,7 +1,18 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @recipe %>
-<%= link_to "New ingredient", new_user_recipe_recipe_food_path(@user, @recipe) %>
+
+<% if can? :manage, @recipe %>
+  <%= form_with(model: [@user, @recipe]) do |form| %>
+    <%= form.hidden_field :public, value: !@recipe.public %>
+    <%= form.submit 'Public?', class: 'button-2' %>
+  <% end %>
+<% end %>
+
+<% if can? :manage, @recipe %>
+  <%= link_to "Generate List", user_recipe_shopping_list_index_path(@user, @recipe), class: 'button-1' %>
+  <%= link_to "Add ingredient", new_user_recipe_recipe_food_path(@user, @recipe), class: 'button-1' %>
+  <%= link_to "Edit this recipe", edit_user_recipe_path(@user, @recipe), class: 'button-1' %>
+  <%= button_to "Delete Recipe", user_recipe_path(@user, @recipe), method: :delete, class: 'button-1' %>
+<% end %>
 
   <table>
     <tr>
@@ -15,7 +26,5 @@
 
 
 <div>
-  <%= link_to "Edit this recipe", edit_user_recipe_path(@user, @recipe) %> |
   <%= link_to "Back to recipes", user_recipes_path(@user) %>
-  <%= button_to "Destroy this recipe", user_recipe_path(@user, @recipe), method: :delete %>
 </div>

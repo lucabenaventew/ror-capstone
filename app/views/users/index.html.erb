@@ -1,11 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<section id="users-index-container">
+  <div>
+    <div id="users">
+      <h1>Users</h1>
+      <div id="users-scroll">
+        <% @users.each do |user| %>
+          <%= render user %>
+        <% end %>
+      </div>
+      <%= link_to "Public Recipes", public_recipes_path %>
+    </div>
+  </div>
+</section>
 
-<h1>Users</h1>
-
-<div id="users">
-  <%= render @users %>
-</div>
-
-<%= link_to "Show Recipes", recipes_path %>
-<%= link_to "Show Foods", foods_path %>
-<%= link_to "New user", new_user_path %>

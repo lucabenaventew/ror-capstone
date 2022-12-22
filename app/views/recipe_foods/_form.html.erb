@@ -17,14 +17,11 @@
   </div>
 
   <div>
-    <%= form.label :recipe_id, style: "display: block" %>
-    <%= form.text_field :recipe_id %>
+    <%= form.label :food_id, style: "display: block" %>
+    <%= collection_select(:recipe_food, :food_id, @user.foods.order( 'name ASC' ), :id, :name) %>
   </div>
 
-  <div>
-    <%= form.label :food_id, style: "display: block" %>
-    <%= form.text_field :food_id %>
-  </div>
+  <br>
 
   <div>
     <%= form.submit %>

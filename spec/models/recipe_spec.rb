@@ -1,33 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  subject do
-    User.create(name: 'Pepe Frog', email: 'test@example.com', password: 'password', password_confirmation: 'password')
-  end
-  before do
-    @recipe = Recipe.create(name: 'apple pie', preparation_time: 10, cooking_time: 10, description: 'Tasty!',
-                            public: true, user: subject)
+  before(:each) do
+    @user = User.create(name: 'Tresor', email: 'tresor@dodso.fr', password: '11111111')
+    expect(@user).to be_valid
+    @recipe = Recipe.create(name: 'cookies', preparation_time: '02:00', cooking_time: '01:00', description: 'chocolat cookies', public: true, user: @user)
   end
 
-  context 'Validations should be working' do
-    it 'ALL validations should return true' do
-      expect(subject).to be_valid
-    end
+  after(:each) do
+    User.destroy_all
+    Recipe.destroy_all
+  end
 
-    it 'ALL validations should return true' do
-      expect(@recipe.name).to eql('apple pie')
-    end
-
-    it 'ALL validations should return true' do
-      expect(@recipe.preparation_time).to be_a_kind_of(Numeric)
-    end
-
-    it 'ALL validations should return true' do
-      expect(@recipe.cooking_time).to be(10)
-    end
-
-    it 'ALL validations should return true' do
-      expect(@recipe.public).to be(true)
-    end
+  it 'should create a recipe' do
+    expect(@recipe).to be_valid
+    expect(@recipe.name).to eq 'cookies'
+    expect(@recipe.preparation_time).to eq '02:00'
+    expect(@recipe.cooking_time).to eq '01:00'
+    expect(@recipe.description).to eq 'chocolat cookies'
+    expect(@recipe.public).to eq true
+    expect(@recipe.user).to eq @user
   end
 end

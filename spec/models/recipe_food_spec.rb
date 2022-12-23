@@ -1,31 +1,22 @@
-require 'rails_helper'
-
-RSpec.describe RecipeFood, type: :model do
-  subject do
-    User.create(name: 'Pepe Frog', email: 'test@example.com', password: 'password', password_confirmation: 'password')
+RSpec.describe 'RecipeFood', type: :model do
+  before(:each) do
+    @user = User.create(name: 'Tresor', email: 'tresor@dodso.fr', password: '11111111')
+    @recipe = Recipe.create(name: 'cookies', preparation_time: '2', cooking_time: '1', description: 'chocolat cookies', public: true, user: @user)
+    @food = Food.create(name: 'chocolate', measurement_unit: 'g', price: 12, user: @user)
+    @recipe_food = RecipeFood.create(quantity: 2, recipe: @recipe, food: @food)
   end
-  before { @apple = Food.create(name: 'apple', measurement_unit: 'kg', price: 10, quantity: 10, user: subject) }
-  before do
-    @recipe = Recipe.create(name: 'apple pie', preparation_time: 10, cooking_time: 10, description: 'Tasty!',
-                            public: true, user: subject)
+
+  after(:each) do
+    Recipe.destroy_all
+    Food.destroy_all
+    RecipeFood.destroy_all
+    User.destroy_all
   end
-  before { @recipe_food = RecipeFood.create(quantity: 5, recipe: @recipe, food: @apple) }
 
-  context 'Validations should be working' do
-    it 'ALL validations should return true' do
-      expect(subject).to be_valid
-    end
-
-    it 'ALL validations should return true' do
-      expect(@recipe_food.quantity).to be(5)
-    end
-
-    it 'RecipeFood food\'s name should return \'apple\'' do
-      expect(@recipe_food.food.name).to eql('apple')
-    end
-
-    it 'RecipeFood recipe\'s name should return \'apple pie\'' do
-      expect(@recipe_food.recipe.name).to eql('apple pie')
-    end
+  it 'should create a recipefood' do
+    expect(@recipe_food).to be_valid
+    expect(@recipe_food.quantity).to eq 2
+    expect(@recipe_food.recipe).to eq @recipe
+    expect(@recipe_food.food).to eq @food
   end
 end

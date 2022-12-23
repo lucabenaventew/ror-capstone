@@ -6,11 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
-node_module/
-
-# ignore hidden files
-.env
-/config/database.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -34,3 +29,5 @@ node_module/
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+node_modules/

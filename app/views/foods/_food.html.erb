@@ -1,20 +1,11 @@
-<div id="<%= dom_id food %>">
-  <p>
-    <strong>Name:</strong>
-    <%= food.name %>
-  </p>
-
-  <p>
-    <strong>Measurement unit:</strong>
-    <%= food.measurement_unit %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    $<%= food.price %>
-  </p>
-
-  <p>
-    <strong>Quantity:</strong>
-    <%= food.quantity %>
-  </p>
+<div class="food_form_container">
+  <%= form_for @food, url: foods_path, method: :post, html: { class: 'foods_form' } do |f| %>
+    <%= f.label :name, class: "form_field_label" %>
+    <%= f.text_field :name, class: "form_field" %>
+    <%= f.label :measurement_unit, class: "form_field_label" %>
+    <%= f.text_field :measurement_unit, class: "form_field" %>
+    <%= f.label :price, class: "form_field_label" %>
+    <%= f.text_field :price, class: "form_field" %>
+    <%= f.submit "Submit", class: "food_form_submit_btn" %>
+  <% end %>
+</div>

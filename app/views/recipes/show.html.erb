@@ -1,30 +1,38 @@
-<%= render @recipe %>
-
-<% if can? :manage, @recipe %>
-  <%= form_with(model: [@user, @recipe]) do |form| %>
-    <%= form.hidden_field :public, value: !@recipe.public %>
-    <%= form.submit 'Public?', class: 'button-2' %>
-  <% end %>
-<% end %>
-
-<% if can? :manage, @recipe %>
-  <%= link_to "Generate List", user_recipe_shopping_list_index_path(@user, @recipe), class: 'button-1' %>
-  <%= link_to "Add ingredient", new_user_recipe_recipe_food_path(@user, @recipe), class: 'button-1' %>
-  <%= link_to "Edit this recipe", edit_user_recipe_path(@user, @recipe), class: 'button-1' %>
-  <%= button_to "Delete Recipe", user_recipe_path(@user, @recipe), method: :delete, class: 'button-1' %>
-<% end %>
-
-  <table>
-    <tr>
-      <th>Food</th>
-      <th>Quantity</th>
-      <th>Value</th>
-      <th>Actions</th>
-    </tr>
-      <%= render @recipe_foods %>
-  </table>
-
-
-<div>
-  <%= link_to "Back to recipes", user_recipes_path(@user) %>
-</div>
+<section>
+  <ul class="recipe_complete_details_container">
+    <li class="recipe_details_head_container">
+      <h2><%= @recipe.name %></h2>
+      <%= render partial: "checkbox" %>
+    </li>
+    <li>Preparation Time: <%= @recipe.preparation_time %></li>
+    <li>Cooking Time: <%= @recipe.cooking_time %></li>
+    <li>Steps are here: <%= @recipe.description %></li>
+    <% if can? :destroy, @recipe %>
+      <li class="recipe_details_buttons_container">
+        <%= link_to "Generate Shopping List", general_shopping_lists_path %>
+        <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe) %>
+          <%= button_to "Remove Recipe", recipe_path(@recipe), method: :delete %>
+      </li>
+    <% end %>
+    <li>
+      <table class="food_table" >
+        <tr>
+          <th class="food_heading"><%= t('.food_name') %></th>
+          <th class="food_heading"><%= t('.quantity') %></th>
+          <th class="food_heading"><%= t('.unit_price') %></th>
+          <th class="food_heading"><%= t('.action') %></th>
+        </tr>
+        <% @recipe_foods.includes(:food).each_with_index do |rf, index| %>
+          <tr class="<%= index%2==0 ? 'food_even' : 'food_prime' %>" >
+            <td class="food_detail" ><%= rf.food.name %></td>
+            <td class="food_detail" ><%= rf.quantity %> <%= rf.food.measurement_unit %></td>
+            <td class="food_detail" >$<%= rf.food.price %></td>
+            <% if can? :destroy, @recipe %>
+            <td class="food_detail" ><%= button_to "remove", recipe_recipe_food_path(@recipe, id: rf.id), method: :delete %></td>
+            <% end %>
+          <tr>
+        <% end %>
+      </table>
+    </li>
+  </ul>
+</section>

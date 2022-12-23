@@ -1,0 +1,13 @@
+<div class="recipe mb-2 flex_center py-2">
+  <div class="single_recipe d-flex w-100 justify-content-between py-2 px-4">
+    <div class="left_block column_direction d-flex justify-content-center align-items-start w-50 px-3">
+      <h4 class="fw-bold pb-2"><%= recipe.name %></h4>
+      <span class="fs-5">By: <strong><%= recipe.user.name %></strong></span>
+    </div>
+    <div class="right_block column_direction w-40 d-flex justify-content-center align-items-start">
+      <span class="fs-5 pb-2">Total food items: <strong><%= recipe.recipe_foods.length %></span></strong>
+      <span class="fs-5 pt-1">Total price: <strong>$<%= recipe.total_price %>.00</strong></span>
+    </div>
+    <%= link_to 'About Recipe', recipe_path(recipe), class: "line_btn decoration_none align-self-center fs-5 fw-bold" %>
+  </div>
+</div>

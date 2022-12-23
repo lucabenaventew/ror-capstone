@@ -1,76 +1,34 @@
 class FoodsController < ApplicationController
-  before_action :obtain_user
-  before_action :set_food, only: %i[show edit update destroy]
-
-  # GET /foods or /foods.json
+  before_action :authenticate_user!
   def index
-    @foods = @user.foods
+    @foods = current_user.foods
   end
 
-  # GET /foods/1 or /foods/1.json
-  def show; end
-
-  # GET /foods/new
   def new
-    @food = @user.foods.build
+    @food = Food.new
   end
 
-  # GET /foods/1/edit
-  def edit
-    @food = Food.find(params[:id])
-  end
-
-  # POST /foods or /foods.json
   def create
-    @food = @user.foods.build(food_params)
-
-    respond_to do |format|
-      if @food.save
-        format.html { redirect_to user_foods_path(@user), notice: 'Food was successfully created.' }
-        format.json { render :show, status: :created, location: @food }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
-      end
+    @food = Food.new(name: food_params[:name],
+                     measurement_unit: food_params[:measurement_unit],
+                     price: food_params[:price], user_id: current_user.id)
+    if @food.save
+      flash[:notice] = 'Food is successfully created'
+      redirect_to foods_path
+    else
+      flash[:notice] = 'Invalid Entry'
+      redirect_to new_food_path
     end
   end
 
-  # PATCH/PUT /foods/1 or /foods/1.json
-  def update
-    respond_to do |format|
-      if @food.update(food_params)
-        format.html { redirect_to user_food_path(@user), notice: 'Food was successfully updated.' }
-        format.json { render :show, status: :ok, location: @food }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /foods/1 or /foods/1.json
   def destroy
-    @food.destroy
-
-    respond_to do |format|
-      format.html { redirect_to user_foods_path(@user), notice: 'Food was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @food = Food.all.find(params[:id]).destroy
+    redirect_to foods_path
   end
 
   private
 
-  def obtain_user
-    @user = User.find(params[:user_id])
-  end
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_food
-    @food = @user.foods.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
   def food_params
-    params.require(:food).permit(:name, :measurement_unit, :price, :quantity, :user_id)
+    params.require(:food).permit(:name, :measurement_unit, :price)
   end
 end

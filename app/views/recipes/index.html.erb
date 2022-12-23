@@ -1,18 +1,11 @@
-<section id="recipes-index-container">
-  <div>
-    <h1>Recipes</h1>
-    <% if can? :manage, @recipes.first %>
-      <%= link_to "Add Recipe", new_user_recipe_path, class: 'button-1' %>
-    <% end %>
-    <div id="recipes">
-      <div class="scroll">
-        <% @recipes.each do |recipe| %>
-          <%= render recipe %>
-          <%= link_to "Open Recipe", user_recipe_path(@user, recipe), class: 'button-2' %>
-        <% end %>
-      </div>
-    </div>
-    <%= link_to "Back to User", user_path(@user), class: 'button-2' %>
-  </div>
-</section>
-
+<ul class="recipes_container">
+  <% @recipes.each_with_index do |recipe, index| %>
+    <li class="recipe_details">
+      <%= link_to recipe, class: "recipe_heading" do %>
+        <h2 class="recipe_name"><%= recipe.name %></h2>
+      <% end %>
+        <p class="recipe_description"><%= recipe.description %></p>
+        <%= button_to "Remove", recipe_path(id: recipe.id), method: :delete, class: 'remove_recipe_btn' %>
+    </li>
+  <% end %>
+</ul>

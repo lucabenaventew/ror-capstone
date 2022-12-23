@@ -1,9 +1,7 @@
-<%= link_to "Back to users", users_path %>
-
-<div>
-  <% @public_recipes.each do |recipe| %>
-    <%= render recipe %>
-    <%= link_to "Open Recipe", user_recipe_path(recipe.user, recipe) %>
-    <br><br>
-  <% end %>
-</div>
+<section class="public_recipe_container mt-5">
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <%= render partial: "recipe", locals: { recipe: } %>
+    <% end %>
+  </div>
+</section>

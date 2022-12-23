@@ -1,0 +1,29 @@
+.public_recipe_container {
+  width: 85%;
+  margin: 50px auto;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipe {
+  background-color: #e9e3e3;
+}
+
+.column_direction {
+  flex-direction: column;
+}
+
+.decoration_none {
+  text-decoration: none;
+}

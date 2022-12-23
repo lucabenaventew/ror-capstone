@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  food_name: "Food"
+  measurement_unit: "Measurement Unit"
+  unit_price: "Unit Price"
+  action: "Actions"
+  quantity: "Quantity"
+  total_price: "Total Price"
+

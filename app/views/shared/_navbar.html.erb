@@ -1,0 +1,21 @@
+<nav class="nav_header">
+  <% if user_signed_in? %>
+    <ul class="user_session">
+      <li class="link_btn"><%= link_to "Home", public_recipes_path %></li>
+      <li class="link_btn"><%= link_to "My Recipes", recipes_path %></li>
+      <li class="link_btn"><%= link_to "My Foods", foods_path %></li>
+      <li class="link_btn"><%= link_to "My Shopping List", general_shopping_lists_path %></li>
+      <li class="link_btn"><%= link_to "Add Food", new_food_path %></li>
+      <li class="link_btn"><%= link_to "Add Recipe", new_recipe_path %></li>
+      <li class="link_btn"><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'sign_out_btn' %></li>
+    </ul>
+  <% else %>
+    <ul class="user_session">
+      <li class="link_btn"><%= link_to "Home", public_recipes_path %></li>
+      <ul class="session_transaction">
+        <li class="link_btn"><%= link_to "Sign in", new_user_session_path %></li>
+        <li class="link_btn"><%= link_to "Sign up", new_user_registration_path %></li>
+      </ul>
+    </ul>
+  <% end %>
+</nav>

@@ -1,4 +1,4 @@
-## Copyright 2021, [Diego Hernandez]
+## Copyright 2021, [Diego Hernandez - Luca Benavente ]
 
 ###### Please delete this line and the next one
 ###### APP TYPE can be a webpage/website, a web app, a software and so on

@@ -1,9 +1,4 @@
-<h1>New recipe</h1>
 
-<%= render "form", recipe: @recipe %>
-
-<br>
-
-<div>
-  <%= link_to "Back to recipes", user_recipes_path(@user) %>
-</div>
+<h1 class="recipe_form_heading">Add new recipe</h1>
+<%= render "recipe_validation_error_message" %>
+<%= render "recipe" %>
